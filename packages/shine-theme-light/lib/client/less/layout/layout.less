@@ -1,0 +1,263 @@
+html,
+body {
+  min-height: 100%;
+  position: relative;
+  background: @main-bg;
+}
+
+#container {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  transition: opacity 500ms,
+  visibility 500ms,
+  transform 500ms,
+  -webkit-filter 500ms;
+  .desktop({
+    max-width: 1050px;
+    margin: auto;
+  });
+  //-webkit-overflow-scrolling: touch;
+}
+
+#container > header {
+  position: relative;
+  width: 100%;
+  height: @header-height;
+  z-index: @zindex-navbar-fixed;
+  overflow: hidden;
+  background: @header-bg;
+  border-bottom: 1px solid @header-border-bottom;
+  .mobile({
+    height: @header-height-mobile;
+  });
+
+  .logo {
+    text-align: center;
+    line-height: @header-height;
+    .mobile({
+      line-height: @header-height-mobile;
+    });
+    a {
+      color: @logo-color;
+      font-size: @logo-font-size;
+      font-weight: 200;
+      text-decoration: none;
+      letter-spacing: 3px;
+      .mobile({
+        font-size: @logo-font-size-mobile;
+      });
+    }
+  }
+
+  .header-left {
+    position: absolute;
+    top: @nav-btn-pos-top;
+    left: @nav-btn-pos-left;
+    button {
+      font-size: @nav-btn-font-size;
+      color: @nav-btn-color;
+    }
+  }
+  .mobile({
+    .header-left {
+      position: absolute;
+      top: @nav-btn-pos-top-mobile;
+      left: @nav-btn-pos-left-mobile;
+      button {
+        font-size: @nav-btn-font-size-mobile;
+      }
+    }
+  });
+
+  .header-right {
+    position: absolute;
+    top: @notice-btn-pos-top;
+    right: @notice-btn-pos-right;
+    button {
+      font-size: @notice-btn-font-size;
+      color: @notice-btn-color;
+    }
+  }
+  .mobile({
+    .header-right {
+      position: absolute;
+      top: @notice-btn-pos-top-mobile;
+      right: @notice-btn-pos-right-mobile;
+      button {
+        font-size: @notice-btn-font-size-mobile;
+      }
+    }
+  });
+
+  .btn-header {
+    width: 30px;
+    padding: 0;
+  }
+
+}
+
+#container > main#content {
+  //position: absolute;
+  //top: @header-height;
+  //bottom: @footer-height;
+  //left: 0;
+  //right: 0;
+  //background: @main-bg;
+  //.mobile({
+  //  top: @header-height-mobile;
+  //});
+}
+
+#container > footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+  z-index: @zindex-navbar-fixed;
+  background: @main-bg;
+}
+
+/*====================================================
+          Sidebar's Style
+====================================================*/
+
+#container > aside {
+  position: absolute;
+
+  top: @header-height + 5px;
+  bottom: @footer-height;
+  z-index: @zindex-navbar-fixed;
+  overflow-y: auto;
+  box-shadow: none;
+  .mobile({
+    top: @header-height-mobile;
+  });
+
+  header {
+    text-align: right;
+  }
+}
+
+#container > aside.left {
+  left: -@aside-left-width;
+  width: @aside-left-width;
+  background: @aside-left-bg;
+  padding: 5px;
+  .mobile({
+    left: -100%;
+    width: 100%;
+  });
+}
+
+#container > aside.right {
+  right: -@aside-right-width;
+  width: @aside-right-width;
+
+  background: @aside-right-bg;
+  height: 100%;
+}
+
+#container > main#content, #container > aside {
+  .transition(all @slide-transition-time ease-out);
+  .transition-transform(all @slide-transition-time ease-out);
+  //.backface-visibility(~'hidden');
+}
+
+#container.aside-left-on {
+  > main#content {
+    margin-left: @aside-left-width
+  }
+
+  > aside.left {
+    left: 0;
+    box-shadow: 1px 0 50px #eee;
+  }
+}
+
+#container.aside-left-fixed {
+  > header {
+    > .header-left {
+      visibility: hidden;
+    }
+  }
+  > main#content {
+    margin-left: @aside-left-width
+  }
+
+  > aside.left {
+    left: 0;
+    border-right: 1px solid @grey;
+  }
+}
+
+#container.aside-right-on {
+  > main#content {
+    left: -@aside-right-width;
+    right: @aside-right-width;
+  }
+
+  > aside.right {
+    right: 0;
+    box-shadow: -1px 0 3px #666;
+  }
+}
+
+#container.aside-right-fixed {
+  > main#content {
+    left: 0;
+    right: @aside-right-width;
+  }
+
+  > aside.right {
+    right: 0;
+    box-shadow: -1px 0 3px #666;
+  }
+}
+
+
+/*====================================================
+          Tree menu's Style
+====================================================*/
+
+#container > aside.left {
+  // login button style
+  .account-info {
+    button:hover {
+      color: @white;
+      background-color: @app-color;
+    }
+  }
+
+  // category item style
+  .list-group {
+    > a {
+      display: block;
+      position: relative;
+      height: 52px;
+      margin-bottom:10px;
+      padding-left:20px;
+      line-height:52px;
+      font-size: 16px;
+      color:@black;
+      background: @tree-menu-item-bg;
+      text-decoration: none;
+      .fa-chevron-right {
+        display: none;
+      }
+      &:hover {
+        color:@white;
+        background: @app-color;
+        .fa-chevron-right {
+          position: absolute;
+          right: 10px;
+          top: 17px;
+          display: inline-block;
+          color: @white;
+        }
+      }
+    }
+  }
+}

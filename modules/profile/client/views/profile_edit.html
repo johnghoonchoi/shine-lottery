@@ -1,0 +1,30 @@
+
+<template name="profileEditNormal">
+  <ul class="list-group">
+    <li class="list-group-item">{{currentUser.username}}</li>
+    <li class="list-group-item">
+      <i class="fa fa-mail"></i> {{userEmail}}
+    </li>
+  </ul>
+</template>
+
+<template name="profileEditForm">
+  <form id="formProfileEdit">
+    <div class="form-group">
+      <label>{{_ 'accounts-ui:label_username'}}</label>
+      <p>{{currentUser.username}}</p>
+    </div>
+
+    <div class="form-group">
+      <label>{{_ 'accounts-ui:label_email'}}</label>
+      <input type="email" id="email" class="form-control"
+             name="email" value="{{userEmail}}">
+    </div>
+
+    <div class="form-group">
+      <input type="submit"
+             class="btn btn-primary pull-right" value="{{_ 'command_save'}}">
+    </div>
+  </form>
+</template>
+

@@ -1,0 +1,1 @@
+# Cropperjs package for meteor

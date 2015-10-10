@@ -1,0 +1,17 @@
+<template name="accountInfo">
+  <div class="account-info">
+    {{#if currentUser}}
+      <div id="user-status" class="well well-sm">
+        <a href="{{pathFor 'profileView'}}" class="avatar-sm">
+          {{{getPicture currentUser}}}
+          <span class="user-name">{{userDisplayName currentUser}}</span>
+        </a>
+        <button class="btn btn-default btn-link pull-right" data-action="signOut">
+          <i class="fa fa-sign-out" title="{{_ 'command_sign_out'}}"></i>
+        </button>
+      </div>
+    {{else}}
+      <button id="sign-in" class="btn btn-app btn-block" data-action="signIn">{{_ 'command_sign_in'}}</button>
+    {{/if}}
+  </div>
+</template>

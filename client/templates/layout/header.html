@@ -1,0 +1,22 @@
+<template name="header">
+  <header>
+    <div class="logo back-bg">
+      <a href="{{pathFor 'home'}}">{{siteName.value}}</a>
+    </div>
+
+    <div class="header-left">
+      <button type="button" class="" data-toggle="navigations"><i class="fa fa-2x fa-bars"></i></button>
+    </div>
+
+    <div class="header-right">
+      {{#if currentUser}}
+        <button type="button" id="btnNotification" class="" data-toggle="notifications"><i class="fa fa-2x fa-bell"></i>
+          {{#if notificationsCount}}<span class="badge">{{notificationsCount}}</span>{{/if}}
+        </button>
+      {{/if}}
+    </div>
+  </header>
+  {{#if currentUser}}
+    {{> notificationsFrame}}
+  {{/if}}
+</template>

@@ -1,0 +1,47 @@
+<template name="profileView">
+  <article class="page">
+    <header>
+      <div class="pull-left">
+        <h3><span>{{_ 'title_profile'}}</span></h3>
+      </div>
+      <div class="pull-right">
+        <button id="changePassword" class="btn btn-default">{{_ 'accounts-ui:nav_change_password'}}</button>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span>{{_ 'label_profile_picture'}}</span>
+          <button id="editPicture" class="btn btn-default btn-xs pull-right">{{_ 'command_edit'}}</button>
+        </div>
+        <div class="panel-body text-center">
+          <div class="view-avatar avatar-md" title="Change the avatar">
+	          {{{getPicture currentUser}}}
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span>{{_ 'label_profile_personal_info'}}</span>
+          <button id="editProfile" class="btn btn-default btn-xs pull-right">{{_ 'command_edit'}}</button>
+        </div>
+        <div class="panel-body">
+          {{> UI.dynamic template=changeTemplate}}
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span>SNS 연결정보</span>
+        </div>
+        <div class="panel-body text-center">
+          <section class="form-group">
+						{{> externalServiceList array=externalServices}}
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+</template>

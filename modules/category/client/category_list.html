@@ -1,0 +1,11 @@
+<template name="categoriesList">
+  {{#each categories}}
+    {{> categoriesListItem}}
+  {{/each}}
+</template>
+
+<template name="categoriesListItem">
+  <a href="{{pathFor 'categoryView'}}" class="{{active}}">
+    <i class="fa fa-chevron-right"></i> {{title}}
+  </a>
+</template>

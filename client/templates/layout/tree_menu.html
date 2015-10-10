@@ -1,0 +1,19 @@
+<template name="treeMenu">
+  <div class="list-group">
+    <!-- Home -->
+    <a id="home" class="{{active 'home'}}"
+       href="{{pathFor 'home'}}" >
+      <i class="fa fa-home"> </i> {{_ 'title_home'}}
+    </a>
+
+    {{#if currentUser}}
+      <a id="myworks" class="{{active 'myworks'}}"
+         href="{{pathFor 'myworks' mode='draft'}}">
+        <i class="fa fa-inbox"> </i> My Works
+      </a>
+    {{/if}}
+
+    {{! read from module 'category' }}
+    {{> categoriesList}}
+  </div>
+</template>

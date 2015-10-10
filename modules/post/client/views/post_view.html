@@ -1,0 +1,52 @@
+<template name="postViewMobile">
+  {{> Template.dynamic template=header}}
+
+  {{> postView}}
+</template>
+
+<template name="postView">
+  {{#if Template.subscriptionsReady}}
+    <article class="page post container-fluid shine-wrapper shine-theme-base">
+      <header>
+      {{#if isEditable}}
+        <div class="btn-toolbar pull-right">
+          <a class="btn btn-primary" href="{{pathFor 'postEdit' _id=post._id}}">Edit</a>
+          <button type="button" id="remove" class="btn btn-danger">Delete</button>
+        </div>
+      {{/if}}
+      </header>
+
+      <article id="articleWrap">
+        <h3 class="title">
+	        {{post.title}}
+        </h3>
+        <div class="info">
+          <span class="category"><a href="{{pathFor 'categoryView' _id=post.categoryId}}">{{category.title}}</a></span>
+		      <span class="author">
+		        <i>by </i><a href="{{pathFor 'accountView' username=post.author.username}}">{{post.author.username}}</a>
+		      </span>
+          <span class="date">{{momentFromNow createdAt}}</span>
+        </div>
+        <section id="contentWrapper" class="markdown block-wrapper">
+          <div>{{#markdown}}{{post.content.data}}{{/markdown}}</div>
+        </section>
+      </article>
+
+      <div id="snswWrap">
+        <div class="sns">
+          {{#if like}}
+            <button type="button" id="unlike" class="btn btn-default" style="border-radius: 10">Unlike</button>
+          {{else}}
+            <button type="button" id="like" class="btn btn-danger" style="border-radius: 10">Like</button>
+          {{/if}}
+        </div>
+      </div>
+
+      {{> postCommentsList}}
+  </article>
+  {{/if}}
+</template>
+
+<template name="postViewContent">
+    {{#markdown}}{{data}}{{/markdown}}
+</template>

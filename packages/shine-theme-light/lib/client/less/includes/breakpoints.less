@@ -1,0 +1,32 @@
+/*====================================================
+                  Media queries
+====================================================*/
+
+// Extra small screen for mobile phone
+@mobile-min: 320px;
+// Small screen for tablet
+@tablet-min: 768px;
+// Medium screen for desktop
+@desktop-min: 992px;
+// Large screen  for wide desktop
+@desktop-lg-min: 1200px;
+
+@mobile-max: (@tablet-min - 1);
+@tablet-max: (@desktop-min - 1);
+@desktop-max: (@desktop-lg-min - 1);
+
+.mobile(@rules) {
+  @media only screen and (min-width: @mobile-min) and (max-width: @mobile-max) {
+    @rules();
+  }
+}
+.tablet(@rules) {
+  @media only screen and (min-width: @tablet-min) and (max-width: @tablet-max){
+    @rules();
+  }
+}
+.desktop(@rules) {
+  @media only screen and (min-width: @desktop-min) {
+    @rules();
+  }
+}

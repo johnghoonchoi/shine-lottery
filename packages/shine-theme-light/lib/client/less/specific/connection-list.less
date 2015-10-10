@@ -1,0 +1,43 @@
+/*====================================================
+        Connections list
+====================================================*/
+
+.connections-frame {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: @app-color;
+  width: @connection-item-width;
+  height: 300px;
+  border: none; //solid 1px @panel-info-border;
+  box-shadow: 0 1px 3px #666;
+
+  background: @app-light-color;
+  z-index: @zindex-navbar-fixed;
+
+  .transition(@slide-transition-time ease-out all);
+
+  header {
+    height: 30px;
+    padding-left: 25px;
+    cursor: pointer;
+
+    p {
+      margin: 0 5px;
+      padding: 0;
+      line-height: 30px;
+    }
+  }
+
+  .body {
+    height: 100%;
+    padding: 5px;
+    background: @white;
+    overflow: auto;
+  }
+}
+
+.connections-frame.minimized {
+  bottom: -10px;
+  height: 40px;
+}

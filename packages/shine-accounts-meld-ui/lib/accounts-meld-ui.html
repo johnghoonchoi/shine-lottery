@@ -1,0 +1,106 @@
+<template name="accountsMeld">
+	{{#if visible}}
+    <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+						{{#each questions}}
+							{{> meldAction}}
+						{{/each}}
+						{{#each melding}}
+							{{> meldingAction}}
+						{{/each}}
+						{{#each completed}}
+							{{> meldingCompleted}}
+						{{/each}}
+          </div>
+          <div class="modal-body new-section">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop fade in"></div>
+	{{/if}}
+</template>
+
+<template name="meldAction">
+  <div class="alert alert-warning">
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>해당 Eamil 주소로 가입된 다른 계정이 존재합니다. 하나의 계정으로 통합하시겠습니까?</h4>
+        <!--<h4>Another account registered with your email address already exists! Would you like to meld the two?</h4>-->
+      </div>
+      <div class="col-sm-10">
+				{{> meldDetails}}
+      </div>
+      <div class="col-sm-2">
+        <button type="button" id="meldActionYes" class="btn btn-success btn-block">예</button>
+        <button type="button" id="meldActionNever" class="btn btn-danger btn-block">아니오</button>
+        <button type="button" id="meldActionNotNow" class="btn btn-warning btn-block">나중에</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="meldingAction">
+  <div class="alert alert-info">
+    <button type="button" class="close" id="closeButton">×</button>
+    <h4>Melding process started in background!</h4>
+		{{> meldDetails}}
+  </div>
+</template>
+
+<template name="meldingCompleted">
+  <div class="alert alert-success">
+    <button type="button" class="close" id="closeButton">×</button>
+    <h4>계정을 성공적으로 통합했습니다.</h4>
+		<!--{{> meldDetails}}-->
+  </div>
+</template>
+
+<template name="meldDetails">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">기존 계정</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            로그인 방법 :
+						{{#each src_info.services}}
+							{{this}}
+						{{/each}}
+          </p>
+          <p>
+            Email 주소:
+						{{#each src_info.emails}}
+							{{address}} {{#unless verified}}(not verified!){{/unless}}
+						{{/each}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">통합된 계정</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            로그인 방법 :<br>
+						{{#each dst_info.services}}
+							{{this}}<br>
+						{{/each}}
+          </p>
+          <p>
+            Email 주소:
+						{{#each dst_info.emails}}
+							{{address}} {{#unless verified}}(not verified!){{/unless}}
+						{{/each}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

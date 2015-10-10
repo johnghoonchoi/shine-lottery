@@ -1,0 +1,88 @@
+/*====================================================
+                      Buttons
+====================================================*/
+
+button {
+  // Reset
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color:inherit;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+
+  // Base Styles
+  //color: @logo-color !important;
+  background: @header-bg;
+  border-radius: 3px;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+
+  // Contents
+  text-align: center;
+  color: white;
+  //font-family: $sans-font;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  // Animation
+  transition: box-shadow 200ms;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  // Space between buttons
+  &.margin-right {
+    margin-right: 1rem;
+  }
+}
+
+.btn,
+.button {
+
+}
+
+
+/*====================================================
+                Buttons Style
+====================================================*/
+
+.btn-app {
+  color: @app-color;
+  background-color: @app-light-color;
+}
+.btn-deep-app {
+  color: @app-light-color;
+  background-color: @app-color;
+}
+
+.btn-white {
+  color: @black;
+  background-color: @white;
+}
+
+.btn-black {
+  color: @white;
+  background-color: @black;
+}
+
+.btn-grey {
+  color: @black;
+  background-color: @lightest-grey;
+}
+
+.delete-link {
+  color: @red !important;
+  text-align: right;
+}
+
+// Outline Buttons
+.btn-secondary {
+
+}

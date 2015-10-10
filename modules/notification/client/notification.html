@@ -1,0 +1,29 @@
+<template name="notificationsFrame">
+  <div id="notifications" class="notification-frame balloon bottom">
+    <div class="arrow"></div>
+    {{> notificationsList}}
+  </div>
+</template>
+
+<template name="notificationsList">
+  <article class="notifications">
+    <div class="body">
+      {{#if isEmpty}}
+        <p>{{_ 'text_notifications_empty'}}</p>
+      {{else}}
+        {{#each notifications}}
+          {{> notificationsListItem}}
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <footer>
+
+    </footer>
+  </article>
+
+</template>
+
+<template name="notificationsListItem">
+  <p>{{msg.content}}</p>
+</template>

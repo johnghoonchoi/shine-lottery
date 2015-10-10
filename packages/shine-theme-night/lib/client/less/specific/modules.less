@@ -1,0 +1,209 @@
+//
+//  Aside pin
+//--------------------------------------------------------------
+.aside-pin {
+  display: inline;
+
+  &.active {
+    color: @red;
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .aside-pin {
+    display: none;
+  }
+}
+
+/*
+@media (max-width: @screen-sm-min) {
+}
+@media (min-width: @screen-md-min) {
+}
+@media (min-width: @screen-lg-min) {
+}
+*/
+
+
+//
+//  Navigation module
+//--------------------------------------------------------------
+#nav-main {
+  min-height: 100%;
+
+  header {
+    position: relative;
+
+    padding-right: 30px;
+
+    .clearfix();
+
+
+  }
+
+  .list-group {
+    margin-bottom: 5px;
+  }
+}
+
+//
+//  Account info box in the left aside
+//--------------------------------------------------------------
+.account-info {
+
+}
+
+#user-status, button#sign-in {
+  margin-bottom: 5px;
+}
+
+//
+//  Notifications
+//--------------------------------------------------------------
+.notification-frame.balloon {
+  position: absolute;
+  top: 50px;
+  right: 5px;
+  max-width: 300px;
+  padding: 1px;
+  border: 1px solid @balloon-border-color;
+  border-radius: @border-radius-large;
+
+  z-index: @zindex-balloon;
+  display: none;
+
+  background-color: @balloon-bg;
+  background-clip: padding-box;
+  .box-shadow(1px 1px 5px rgba(0, 0, 0, .8));
+
+  // Offset the balloon to account for the balloon arrow
+  &.top     { margin-top: -@balloon-arrow-width; }
+  &.right   { margin-left: @balloon-arrow-width; }
+  &.bottom  { margin-top: @balloon-arrow-width; }
+  &.left    { margin-left: -@balloon-arrow-width; }
+}
+
+article.notifications {
+  padding: 10px;
+
+  .body {
+    p {
+      margin: 0;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    p + p {
+      border-top: solid 1px #ccc;
+    }
+  }
+
+  footer {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 30px;
+  }
+}
+
+#btnNotification .badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: #fff;
+  background-color: @brand-danger;
+}
+
+//
+// Spinner
+//--------------------------------------------------------------
+.spinner-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: @zindex-modal + 1;
+}
+
+.list-spinner-wrapper {
+  position: relative;
+  height: 42px;
+}
+
+.load-more {
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.loggingIn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: @zindex-modal + 1;
+}
+
+//
+// connections list
+//--------------------------------------------------------------
+
+.connections-frame {
+  position: fixed;
+
+  bottom: 0;
+  right: 50px;
+  
+  width: @connection-item-width;
+  height: 300px;
+  border: none; //solid 1px @panel-info-border;
+  border-radius: @border-radius-base;
+  box-shadow: 0 1px 3px #666;
+
+  background: @brand-info;
+  z-index: @zindex-navbar-fixed;
+
+  .transition(@slide-transition-time ease-out all);
+
+  header {
+    height: 30px;
+
+    cursor: pointer;
+
+    p {
+      margin: 0 5px;
+      padding: 0;
+      line-height: 30px;
+    }
+  }
+
+  .body {
+    height: 100%;
+    padding: 5px;
+    background: #fff;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+
+.connections-frame.minimized {
+  bottom: -10px;
+  height: 40px;
+}
+
+
+//
+//
+//--------------------------------------------------------------
+[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #bababa;
+}
+
+.title-editable {
+  padding: 2px;
+}
+
+.content-editable {
+  min-height: 100px;
+  padding: 2px;
+}

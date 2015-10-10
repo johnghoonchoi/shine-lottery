@@ -1,0 +1,18 @@
+<template name="layout">
+  <div id="container">
+    {{> header}}
+
+    <main id="content">
+      {{> yield}}
+    </main>
+
+    {{> asideLeftClassic}}
+    {{> accountsMeld}}
+
+    {{#if currentUser}}
+      {{> connectionsList}}
+    {{/if}}
+  </div>
+
+  {{> meteorAlerts}}
+</template>

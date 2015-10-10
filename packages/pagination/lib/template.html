@@ -1,0 +1,17 @@
+<template name="pagination">
+  {{#if ready}}
+    {{#if hasMore}}
+      {{> Template.dynamic template=loadMoreTemplate}}
+    {{/if}}
+  {{else}}
+    {{> Template.dynamic template=loadingTemplate}}
+  {{/if}}
+</template>
+
+<template name="paginationLoading">
+  <div class="pagination-loading">Loading...</div>
+</template>
+
+<template name="paginationLoadMore">
+  <div class="pagination-load-more">{{_ 'label_load_more'}}</div>
+</template>

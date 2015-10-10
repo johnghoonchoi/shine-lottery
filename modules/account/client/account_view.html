@@ -1,0 +1,35 @@
+<template name="accountView">
+  <article class="page container-fluid shine-wrapper">
+    <header>
+      <h3>{{displayName}} <small>({{postsCount}})</small><i>{{user.newName}}</i></h3>
+    </header>
+
+    <div class="body">
+      <div class="row-fluid">
+        {{#if noPosts}}
+          <div class="row-fluid">
+            {{#if Template.subscriptionsReady}}
+              {{_ 'text_no_blogs'}}
+            {{/if}}
+          </div>
+        {{else}}
+          <ul class="block-list">
+            {{#each posts}}
+              {{> postsListItem}}
+            {{/each}}
+          </ul>
+
+          {{#if Template.subscriptionsReady}}
+            <div class="row-fluid">
+              {{#if hasMore}}
+                <a class="btn btn-default btn-block load-more">더 보기</a>
+              {{/if}}
+            </div>
+          {{else}}
+            <div class="loading">{{> listLoading}}</div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </article>
+</template>

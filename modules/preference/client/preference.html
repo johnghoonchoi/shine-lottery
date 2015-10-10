@@ -1,0 +1,20 @@
+<template name="preference">
+  <article class="page">
+    <h3>{{_ 'title_preference'}}</h3>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        {{#each themes}}
+          {{> themeListItem}}
+        {{/each}}
+      </div>
+    </div>
+  </article>
+</template>
+
+<template name="themeListItem">
+  <div class="box-label">
+    <label for="{{_id}}" class="label-custom">{{name}}</label>
+    <input type="radio" id="{{_id}}" name="theme" value="{{_id}}" checked="{{isChecked}}" style="display:none">
+  </div>
+</template>

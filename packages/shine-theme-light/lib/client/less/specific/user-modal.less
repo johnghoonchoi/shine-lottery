@@ -1,0 +1,50 @@
+body.modal-open {
+  overflow: hidden;
+}
+
+.dialog-header {
+  border-bottom: 1px solid @gray-lighter;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-table;
+  height: 52px;
+  padding: 15px;
+  width: 100%;
+}
+
+#userListModal .modal-body {
+  padding: 0px;
+}
+
+#userListModal h4.userModal {
+  display: inline-block;
+  line-height: 1;
+}
+
+.userListBody {
+  padding: 0;
+}
+
+ul.userList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 420px;
+  overflow-y: auto;
+  li {
+    cursor: pointer;
+    height: 25px;
+    border-bottom: 1px solid @gray-lighter;
+    padding-bottom: 2px;
+    //&:hover {
+    //  background: @gray-lighter;
+    //}
+  }
+  li p {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1; // Temporary
+  }
+}

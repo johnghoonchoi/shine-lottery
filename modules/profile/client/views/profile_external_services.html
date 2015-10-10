@@ -1,0 +1,17 @@
+<template name="externalServiceList">
+	{{#each array}}
+		{{> externalServiceItem}}
+	{{/each}}
+</template>
+
+<template name="externalServiceItem">
+	{{#if canConnectService}}
+    <button data-action="connect-service" class="btn {{name}} btn-block">
+      <span class="text-besides-image sign-in-text-{{name}}">{{name}} 연결하기</span>
+    </button>
+	{{else}}
+    <button data-action="disconnect-service" class="btn btn-default btn-block">
+      <span class="text-besides-image sign-in-text-{{name}}">{{capitalizedName}} 연결해제</span>
+    </button>
+	{{/if}}
+</template>

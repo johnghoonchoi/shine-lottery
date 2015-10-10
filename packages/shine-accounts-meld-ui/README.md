@@ -1,0 +1,1 @@
+Meteor's `splendido:accounts-meld` package에서 사용되는 부트스트랩으로 스타일링된 클라이언트 사이드 템플릿 

@@ -1,12 +1,32 @@
-/**
- * Created by ProgrammingPearls on 15. 10. 10..
- */
+
+const accessControlHook = function() {
+  if (! Meteor.user()) {
+    if (Meteor.loggingIn()) {
+      this.render(this.loadingTemplate);
+    } else {
+      Accounts.ui.dialog.show('signIn');
+    }
+  } else {
+    this.next();
+  }
+};
 
 Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',
+  waitOn() {
+    return Meteor.subscribe('currentUser')
+  }
 });
 
-Router.route('/', {
-  name: 'home',
+Router.onBeforeAction(accessControlHook, { only: [
+  'myworks',
+  'postWrite',
+  'postEdit'
+]});
+
+Router.plugin('dataNotFound', { notFoundTemplate: 'notFound' });
+
+Router.route('/', function() {
+  this.redirect('/home');
 });

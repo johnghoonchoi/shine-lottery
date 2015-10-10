@@ -17,16 +17,65 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
-accounts-base
-reactive-var
-underscore
-shinejs:alerts
-shinejs:accounts-ui
-shinejs:bootstrap-less
-momentjs:moment
-percolate:momentum
 fortawesome:fontawesome
+shinejs:bootstrap-less
+shinejs:alerts
+momentjs:moment
+shinejs:i18n
+tmeasday:publish-counts
+sacha:spin
+
+
+shinejs:cloudinary-direct
+reactive-var
+
+reywood:publish-composite
+percolate:momentum
+alanning:roles
+
+gadicohen:prism
+
+shinejs:logger
+shinejs:connections
+
+# editor
+perak:codemirror
+simple:highlight.js
+chuangbo:marked
+dburles:collection-helpers
+matb33:collection-hooks
+reactive-dict
+
+percolate:velocityjs
+shinejs:overlay
+
+http
+raix:push
 
 # accounts
 service-configuration
+shinejs:accounts-ui
 accounts-password
+accounts-google
+accounts-facebook
+accounts-meetup
+accounts-github
+accounts-twitter
+
+
+less
+shinejs:cropperjs
+
+accounts-meteor-developer
+spectrum:accounts-naver
+spectrum:accounts-kakao
+shinejs:accounts-meld-ui
+shinejs:accounts-meld
+
+
+#for shine bootstrap theme
+shinejs:shine-theme-light
+
+
+check
+

@@ -1,0 +1,64 @@
+<template name="chatFrame">
+  <div class="chat-frame">
+    <header>
+      <p>대화상대 : {{user.username}}</p>
+      <a class="close">&times;</a>
+    </header>
+
+    <main class="body">
+      <div class="chat-message-lists">
+        {{#if Template.subscriptionsReady}}
+          {{#each chatMessagesList}}
+            {{> chatMessageListItem}}
+          {{/each}}
+
+          {{#if onTyping}}
+            {{>chatStatusInput}}
+          {{/if}}
+        {{else}}
+          Loading...
+        {{/if}}
+      </div>
+    </main>
+
+    <footer>
+      <textarea placeholder="내용을 입력하세요."></textarea>
+    </footer>
+  </div>
+</template>
+
+<template name="chatMessageListItem">
+  <div class="chat-message-item">
+    {{#if isDate type}}
+      <p class="date"><span>{{momentKoreanDate createdAt 5}}</span></p>
+    {{else}}
+      {{#unless isUserMessage from}}
+        <a href="#" class="avatar-sm">
+          {{{getPartnerPictures}}}
+        </a>
+        <p class="from chat-balloon right">
+          {{content}}
+        </p>
+      {{else}}
+        <p class="me chat-balloon left">
+          {{content}}
+        </p>
+      {{/unless}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="chatStatusInput">
+  <div class="chat-message-item">
+    <a href="#" class="avatar-sm">
+      {{{getPartnerPictures}}}
+    </a>
+    <div class="from chat-balloon right">
+      <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'NanumMyeongjo';
+    font-style: normal;
+    font-weight: 400;
+    url(/fonts/common/NanumMyeongjo-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBrush';
+    font-style: normal;
+    font-weight: 400;
+url(/fonts/common/NanumBrushScript-regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumPen';
+    font-style: normal;
+    font-weight: 400;
+url(/fonts/common/NanumPenScript-regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumGothic';
+    font-style: normal;
+    font-weight: 400;
+url(/fonts/common/NanumGothic-regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumGothicCoding';
+    font-style: normal;
+    font-weight: 400;
+url(/fonts/common/NanumGothicCoding-regular.ttf) format('truetype');
+}
+
+/*@font-face {*/
+/*font-family: 'NanumGothic';*/
+/*font-style: normal;*/
+/*font-weight: 400;*/
+/*src: url(/static/fonts/common/NanumGothic-Regular.eot);*/
+/*src: url(/static/fonts/common/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),*/
+/*url(/static/fonts/common/NanumGothic-Regular.woff2) format('woff2'),*/
+/*url(/static/fonts/common/NanumGothic-Regular.woff) format('woff'),*/
+/*url(/static/fonts/common/NanumGothic-Regular.ttf) format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: 'NanumGothic';*/
+/*font-style: normal;*/
+/*font-weight: 700;*/
+/*src: url(/static/fonts/common/NanumGothic-Bold.eot);*/
+/*src: url(/static/fonts/common/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),*/
+/*url(/static/fonts/common/NanumGothic-Bold.woff2) format('woff2'),*/
+/*url(/static/fonts/common/NanumGothic-Bold.woff) format('woff'),*/
+/*url(/static/fonts/common/NanumGothic-Bold.ttf) format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*font-family: 'NanumGothic';*/
+/*font-style: normal;*/
+/*font-weight: 800;*/
+/*src: url(/static/fonts/common/NanumGothic-ExtraBold.eot);*/
+/*src: url(/static/fonts/common/NanumGothic-ExtraBold.eot?#iefix) format('embedded-opentype'),*/
+/*url(/static/fonts/common/NanumGothic-ExtraBold.woff2) format('woff2'),*/
+/*url(/static/fonts/common/NanumGothic-ExtraBold.woff) format('woff'),*/
+/*url(/static/fonts/common/NanumGothic-ExtraBold.ttf) format('truetype');*/
+/*}*/
+
+
+/*@font-face {*/
+    /*font-family: 'NanumMyeongjo';*/
+    /*font-style: normal;*/
+    /*font-weight: 600;*/
+    /*src: url(/static/fonts/common/NanumMyeongjo-Bold.eot);*/
+    /*src: url(/static/fonts/common/NanumMyeongjo-Bold.eot?#iefix) format('embedded-opentype'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-Bold.woff2) format('woff2'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-Bold.woff) format('woff'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-Bold.ttf) format('truetype');*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'NanumMyeongjo';*/
+    /*font-style: normal;*/
+    /*font-weight: 700;*/
+    /*src: url(/static/fonts/common/NanumMyeongjo-ExtraBold.eot);*/
+    /*src: url(/static/fonts/common/NanumMyeongjo-ExtraBold.eot?#iefix) format('embedded-opentype'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-ExtraBold.woff2) format('woff2'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-ExtraBold.woff) format('woff'),*/
+    /*url(/static/fonts/common/NanumMyeongjo-ExtraBold.ttf) format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'NanumBarunpen';*/
+    /*src: url(/fonts/NanumBarunpenR.woff) format('woff');*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'NanumBareunGothicUltraLight';*/
+    /*src: url(/static/fonts/NanumBarunGothicUltraLight.woff) format('woff'),*/
+    /*url(/static/fonts/NanumBarunGothicUltraLight.ttf) format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'Noto Sans Light';*/
+    /*src: url(/static/fonts/noto/NotoSansCJKkr-Light.woff) format('woff');*/
+    /*font-style: normal;*/
+    /*font-weight: normal;*/
+/*}*/
+
+/*@font-face {*/
+    /*font-family: 'Noto Sans DemiLight';*/
+    /*src: url(/static/fonts/noto/NotoSansCJKkr-DemiLight.woff) format('woff');*/
+    /*font-style: normal;*/
+    /*font-weight: normal;*/
+/*}*/

@@ -1,9 +1,66 @@
 <template name="home">
-  <div>Hello World</div>
+  <article class="page container-fluid shine-wrapper">
+      <div class="row-fluid">
+        <nav class="navtabs">
+          <ul class="navtabs-list">
+            <li class="navtabs-item {{isActive ''}}">
+              <a class="navtabs-anchor" href="{{pathFor 'home'}}">최신순</a>
+            </li>
+            <li class="navtabs-item {{isActive 'like'}}">
+              <a class="navtabs-anchor" href="{{pathFor 'home' query='sortBy=like'}}">인기순</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    {{#unless Template.subscriptionsReady}}
+      {{> listLoading}}
+    {{else}}
+      {{#if noPosts}}
+        <div class="row-fluid">
+          {{_ 'text_no_blogs'}}
+        </div>
+      {{else}}
+        <div class="row-fluid">
+          <div class="block-group">
+            <ul class="block-list">
+              {{#each posts}}
+                {{#with postWithCategory}}
+                  {{> homeListItem}}
+                {{/with}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
 
-  {{#if currentUser}}
-    <button id="btn_logout">Logout</button>
-  {{else}}
-    <button id="btn_login">Login</button>
-  {{/if}}
+        {{#if hasMore}}
+          <div class="row-fluid">
+            <a class="btn btn-deep-app btn-block load-more">{{_ 'command_load_more'}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+    {{/unless}}
+  </article>
+</template>
+
+
+<template name="homeListItem">
+  <li class="post-item">
+    <h3 class="title">
+      <small><a href="{{pathFor 'categoryView' _id=categoryId}}">{{category.title}}</a></small>
+      <a class="title-link" href="{{pathFor 'postView'}}">{{title}}</a>
+    </h3>
+    <p>
+      {{{postContent}}}
+    </p>
+    <div class="info">
+      <span class="author">
+        <i>by </i><a href="{{pathFor 'accountView' username=author.username}}">{{author.username}}</a>
+      </span>
+      <span class="counts">
+        <span class="count"><i class="fa fa-heart-o"></i> {{likesCount}}</span>
+        <span class="count"><i class="fa fa-comment-o"></i> {{commentCount}}</span>
+      </span>
+      <span class="date">{{momentFromNow createdAt}}</span>
+    </div>
+  </li>
 </template>
