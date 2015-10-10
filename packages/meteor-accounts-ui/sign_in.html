@@ -1,0 +1,88 @@
+<template name="signIn">
+  <article id="accounts-ui-sign-in" class="accounts-ui-page">
+    {{> accountsUIHeader title='accounts-ui:title_logo_name'}}
+
+    <div class="body">
+      <!--{{#if loggingIn}}-->
+        <!--{{> accountsUILoading}}-->
+      <!--{{/if}}-->
+
+      {{> meteorModalAlerts}}
+
+      {{#each services}}
+        {{#if isPasswordService}}
+          {{#if hasOtherServices}} {{! the password service will always come last }}
+            {{> signInServiceSeparator}}
+          {{/if}}
+          {{> signInPasswordService}}
+        {{else}}
+          {{> signInOtherService}}
+        {{/if}}
+      {{/each}}
+    </div>
+
+    <footer>
+      {{#if showCreateAccountLink}}
+        <div class="additional-link-container">
+          <a id="signUpLink" class="additional-link">{{_ 'accounts-ui:command_sign_up'}}</a>
+        </div>
+      {{/if}}
+    </footer>
+  </article>
+</template>
+
+<template name="signInPasswordService">
+  <form id="formSignIn" class="login-form login-password-form">
+    {{#each fields}}
+      {{> accountsUIFormField}}
+    {{/each}}
+
+    {{#if showForgotPasswordLink}}
+      <section class="form-group">
+        <a id="forgotPasswordLink"
+           class="pull-right">{{_ 'accounts-ui:text_forgot_password'}}</a>
+      </section>
+    {{/if}}
+
+    <section class="form-group">
+      <button type="submit" class="btn btn-deep-app btn-block pull-right">
+        <span class="service-icon">{{_ 'accounts-ui:command_sign_in'}}</span>
+        <i class="icon-spin4 animate-spin loading-icon hidden"></i>
+      </button>
+    </section>
+  </form>
+</template>
+
+<template name="signInOtherService">
+  <button data-action="sign-in" class="button {{name}} {{#unless configured}}configure-button{{/unless}}">
+    <i class="icon-{{name}} service-icon"></i><i class="icon-spin4 animate-spin loading-icon hidden"></i>
+    {{#if configured}}
+      <span class="text-besides-image sign-in-text-{{name}}" style="display: none;">
+        {{_ 'accounts-ui:label_sign_in_with' 0=capitalizedName}}</span>
+    {{else}}
+      <span class="text-besides-image configure-text-{{name}}" style="display: none;">
+        {{_ 'accounts-ui:label_configure_sign_in' 0=capitalizedName}}</span>
+    {{/if}}
+  </button>
+</template>
+
+<!--<template name="signInOtherService">-->
+  <!--<section class="form-group">-->
+	  <!--<a href="#">-->
+		  <!--<img src="/images/naver.png" width="50" height="50">-->
+	  <!--</a>-->
+  <!--</section>-->
+<!--</template>-->
+
+
+<template name="signInServiceSeparator">
+  <section class="form-group">
+    <div class="separator"></div>
+  </section>
+</template>
+
+<template name="backToSignIn">
+  <div class="additional-link-container">
+    <a id="backToSignIn" class="additional-link">{{_ 'accounts-ui:nav_sign_in'}}</a>
+  </div>
+</template>

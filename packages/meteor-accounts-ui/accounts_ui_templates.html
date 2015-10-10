@@ -1,0 +1,32 @@
+<body>
+  {{> configureLoginServiceDialog}}
+  {{> configureLoginOnDesktopDialog}}
+</body>
+
+<template name="accountsUIOverlay">
+  <div id="accounts-ui-overlay">
+    <div class="overlay-wrapper">
+      {{> Template.dynamic template=activeTemplate}}
+    </div>
+  </div>
+</template>
+
+<template name="accountsUILoading">
+  {{> loading}}
+</template>
+
+<template name="accountsUIHeader">
+  <header>
+    <h3>{{title}}</h3>
+    <a class="close" data-dismiss="modal">&times;</a>
+  </header>
+</template>
+
+<template name="accountsUIFormField">
+  {{#if visible}}
+    <section class="form-group">
+      <input id="login-{{fieldName}}" class="form-control"
+             type="{{inputType}}" placeholder="{{fieldLabel}}" />
+    </section>
+  {{/if}}
+</template>

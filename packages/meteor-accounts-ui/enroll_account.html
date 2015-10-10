@@ -1,0 +1,31 @@
+<template name="enrollAccount">
+  <article class="accounts-ui-page">
+    {{> accountsUIHeader title='accounts-ui:nav_enroll_account'}}
+
+    <div class="body">
+      {{> meteorModalAlerts}}
+
+      {{> enrollAccountService}}
+    </div>
+  </article>
+</template>
+
+<template name="enrollAccountService">
+  <form>
+    <section class="form-group">
+      <label id="enroll-account-password-label" for="enroll-account-password">
+        Choose a password
+      </label>
+
+      <div class="enroll-account-password-wrapper">
+        <input id="enroll-account-password" type="password" />
+      </div>
+    </section>
+
+    <section class="form-group">
+      <div class="btn btn-primary btn-block">
+        Create account
+      </div>
+    </section>
+  </form>
+</template>

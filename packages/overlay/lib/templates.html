@@ -1,0 +1,22 @@
+<template name="overlays">
+
+    {{#each overlaysList}}
+      {{> overlaysListItem}}
+    {{/each}}
+
+</template>
+
+<template name="overlaysListItem">
+  <div class="overlay">
+    <header>
+      <div class="header-left">
+        <button type="button" id="overlay-close" class="btn btn-black btn-header">
+          <i class="fa fa-2x fa-chevron-left"></i>
+        </button>
+      </div>
+    </header>
+    <div class="body">
+      {{> Template.dynamic template=overlayTemplate data=dataContext}}
+    </div>
+  </div>
+</template>

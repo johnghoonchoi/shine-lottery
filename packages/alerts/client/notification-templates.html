@@ -1,0 +1,26 @@
+<template name="meteorAlerts">
+  <div class="meteor-alerts">
+    {{#momentum plugin='fade'}}
+      {{#each alerts}}
+        {{> meteorAlert}}
+      {{/each}}
+    {{/momentum}}
+  </div>
+</template>
+
+<template name="meteorModalAlerts">
+  <div class="meteor-modal-alerts">
+    {{#momentum plugin='fade'}}
+      {{#each alerts}}
+        {{> meteorAlert}}
+      {{/each}}
+    {{/momentum}}
+  </div>
+</template>
+
+<template name="meteorAlert">
+  <div class="alert alert-align-right {{alertClass}}" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>{{message}}</p> <i class="fa fa-2x {{alertIcon}}"></i>
+  </div>
+</template>

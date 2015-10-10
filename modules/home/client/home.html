@@ -1,0 +1,9 @@
+<template name="home">
+  <div>Hello World</div>
+
+  {{#if currentUser}}
+    <button id="btn_logout">Logout</button>
+  {{else}}
+    <button id="btn_login">Login</button>
+  {{/if}}
+</template>

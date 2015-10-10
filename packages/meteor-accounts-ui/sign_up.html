@@ -1,0 +1,89 @@
+<template name="signUp">
+  <article class="accounts-ui-page">
+    {{> accountsUIHeader title='accounts-ui:nav_sign_up'}}
+
+    <div class="body">
+      {{> meteorModalAlerts}}
+
+      {{#if loggingIn}}
+        {{> accountsUILoading}}
+      {{/if}}
+
+      {{#each services}}
+        {{#if isPasswordService}}
+          {{> signUpPasswordService}}
+        {{/if}}
+      {{/each}}
+    </div>
+
+    <footer>
+      {{> backToSignIn}}
+    </footer>
+  </article>
+</template>
+
+
+<template name="signUpPasswordService">
+  <form id="formSignUp">
+    {{#each fields}}
+      {{> accountsUIFormField}}
+    {{/each}}
+
+    <section class="checkbox">
+      <label>
+        <input type="checkbox" name="agreements" id="agreements" value="1">
+        {{{_ "accounts-ui:text_agreement" 0=termsOfUseLink 1=privacyPolicyLink}}}
+      </label>
+    </section>
+
+    <section class="form-group">
+      <button type="submit" class="btn btn-deep-app btn-block pull-right">
+        {{_ 'accounts-ui:command_sign_up'}}
+      </button>
+    </section>
+  </form>
+</template>
+
+<template name="modalTermsOfUse">
+  <!-- Modal -->
+  <div class="modal fade" id="modalTermsOfUse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title" id="myModalLabel">{{_ 'accounts-ui:label_terms_of_use'}}</h4>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            {{_ 'accounts-ui:command_close'}}
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</template>
+
+<template name="modalPrivacyPolicy">
+  <!-- Modal -->
+  <div class="modal fade" id="modalPrivacyPolicy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button>
+          <h4 class="modal-title" id="myModalLabel">{{_ 'accounts-ui:label_privacy_policy'}}</h4>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            {{_ 'accounts-ui:command_close'}}
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</template>

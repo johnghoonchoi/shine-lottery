@@ -1,0 +1,79 @@
+// Bootstrap 3.3.4
+@import "{shinejs:bootstrap-less}/bootstrap.less";
+
+.meteor-alerts {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.meteor-alerts .alert {
+  position: relative;
+  clear: both;
+  max-width: 50%;
+  min-width: 280px;
+  margin-bottom: 5px;
+  pointer-events: auto;
+}
+
+.meteor-alerts .alert + .alert {
+  margin-top: 10px;
+}
+
+.meteor-modal-alerts {
+  width: 100%;
+  pointer-events: none;
+
+  .clearfix();
+}
+
+.meteor-modal-alerts .alert {
+  position: relative;
+  clear: both;
+  width: 100%;
+  margin-bottom: 5px;
+  pointer-events: auto;
+}
+
+.meteor-modal-alerts .alert + .alert {
+  margin-top: 10px;
+}
+
+.meteor-alerts .alert p, .meteor-modal-alerts .alert p {
+  margin: 0;
+  padding-left: 25px;
+  padding-right: 15px;
+  line-height: 1.5em;
+}
+
+.meteor-alerts .alert i, .meteor-modal-alerts .alert i {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.meteor-alerts .close, .meteor-modal-alerts .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.alert-align-left {
+  float: left;
+
+}
+
+.alert-align-right {
+  float: right;
+}
+
+.alert-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+

@@ -1,0 +1,19 @@
+<template name="meteorAlertDialog">
+  <div id="meteorAlertDialog" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>{{message}}</p>
+        </div>
+        <div class="modal-footer">
+          {{#if isConfirm}}
+            <button type="button" id="btnNo" class="btn btn-default">No</button>
+            <button type="button" id="btnYes" class="btn btn-primary">Yes</button>
+          {{else}}
+            <button type="button" id="btnClose" class="btn btn-default">Close</button>
+          {{/if}}
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</template>
