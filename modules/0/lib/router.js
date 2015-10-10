@@ -1,32 +1,33 @@
 
-const accessControlHook = function() {
+const beforeAccessControlHook = function() {
+
+  $('#content').removeClass("slideLeft");
+
   if (! Meteor.user()) {
     if (Meteor.loggingIn()) {
+      $('#content').addClass('slideLeft');
       this.render(this.loadingTemplate);
     } else {
+
       Accounts.ui.dialog.show('signIn');
     }
   } else {
+    $('#content').addClass('slideLeft');
     this.next();
   }
 };
 
+const afterAccessControlHook = function() {
+};
+
+
 Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',
-  waitOn() {
-    return Meteor.subscribe('currentUser')
-  }
+
 });
 
-Router.onBeforeAction(accessControlHook, { only: [
-  'myworks',
-  'postWrite',
-  'postEdit'
-]});
+Router.onBeforeAction(beforeAccessControlHook);
+//Router.onAfterAction(afterAccessControlHook);
 
 Router.plugin('dataNotFound', { notFoundTemplate: 'notFound' });
-
-Router.route('/', function() {
-  this.redirect('/home');
-});

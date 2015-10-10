@@ -160,4 +160,37 @@ Meteor.startup(function() {
   //    Categories.insert(category);
   //  });
   //}
+  
+  if (Gamerooms.find().count() === 0) {
+    const now = new Date();
+    const game =
+    {
+      title: '경품 추첨',
+      host: {
+        _id: 'mFdNZgvwZ5knQTw45',
+        username: 'asd',
+        profile_url: 'A',
+      },
+      connections: [
+        {
+          _id: 'mFdNZgvwZ5knQTw45',
+          username: 'asd',
+          profile_url: 'A',
+        },
+        {
+          _id: 'mFdNZgvwZ5knQTw45',
+          username: 'asd',
+          profile_url: 'A',
+        },
+
+      ],
+      state: 'ready',
+      createdAt: now
+    }
+
+
+
+    Gamerooms.insert(game);
+
+  }
 });

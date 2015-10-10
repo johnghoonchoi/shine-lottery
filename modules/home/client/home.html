@@ -8,12 +8,13 @@
       <nav class="navtabs">
         <ul class="navtabs-list">
           <li class="navtabs-item active">
-            <a class="navtabs-anchor" href="/">게임목록</a>
+            <a class="navtabs-anchor" href="#">게임목록</a>
           </li>
+          {{#if currentUser}}
           <li class="navtabs-item pull-right">
-            <a class="navtabs-add-game" data-toggle="modal"
-                    data-target="#gameModal"><i class="fa fa-plus-circle"></i></a>
+            <a class="navtabs-add-game"><i class="fa fa-plus-circle"></i></a>
           </li>
+          {{/if}}
         </ul>
       </nav>
     </div>
@@ -25,10 +26,8 @@
       <div class="row-fluid">
         <div class="block-group">
           <ul class="block-list">
-            {{#each posts}}
-            {{#with postWithCategory}}
+            {{#each gamerooms}}
             {{> homeListItem}}
-            {{/with}}
             {{/each}}
           </ul>
         </div>
@@ -44,28 +43,44 @@
 
     {{/unless}}
   </article>
-
-  {{> gameroomsWrite}}
 </template>
 
 <template name="homeListItem">
   <li class="post-item">
-    <h3 class="title">
-      <small><a href="{{pathFor 'categoryView' _id=categoryId}}">{{category.title}}</a></small>
-      <a class="title-link" href="{{pathFor 'postView'}}">{{title}}</a>
-    </h3>
-    <p>
-      {{{postContent}}}
-    </p>
-    <div class="info">
-      <span class="author">
-        <i>by </i><a href="{{pathFor 'accountView' username=author.username}}">{{author.username}}</a>
-      </span>
-      <span class="counts">
-        <span class="count"><i class="fa fa-heart-o"></i> {{likesCount}}</span>
-        <span class="count"><i class="fa fa-comment-o"></i> {{commentCount}}</span>
-      </span>
-      <span class="date">{{momentFromNow createdAt}}</span>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1 title">
+          <small>{{state}}</small>
+        </div>
+        <div class="col-md-6 title">
+          {{title}}
+        </div>
+        <div class="col-md-3 title">
+          {{connections.length}}
+        </div>
+        <div class="col-md-2 title">
+          {{#if isReady state}}
+            <a href="{{pathFor 'gameroomsView' _id}}" class="btn btn-success">참여</a>
+          {{else}}
+            <button type="button" class="btn btn-warning">관전</button>
+          {{/if}}
+        </div>
+      </div>
+
     </div>
+
+    <!--<p>-->
+      <!--{{{postContent}}}-->
+    <!--</p>-->
+    <!--<div class="info">-->
+      <!--<span class="author">-->
+        <!--<i>by </i><a href="{{pathFor 'accountView' username=author.username}}">{{author.username}}</a>-->
+      <!--</span>-->
+      <!--<span class="counts">-->
+        <!--<span class="count"><i class="fa fa-heart-o"></i> {{likesCount}}</span>-->
+        <!--<span class="count"><i class="fa fa-comment-o"></i> {{commentCount}}</span>-->
+      <!--</span>-->
+      <!--<span class="date">{{momentFromNow createdAt}}</span>-->
+    <!--</div>-->
   </li>
 </template>

@@ -1,9 +1,12 @@
-
-Router.route('/home', {
+Router.route('/', {
   name: 'home',
-  data: function() {
-    return {
-      sortBy: (this.params.query) ? this.params.query.sortBy : ''
-    };
-  }
 });
+
+Router.route('game/:_id', {
+  name: 'gameroomsView',
+});
+
+
+//Router.onAfterAction(function () {
+
+//})

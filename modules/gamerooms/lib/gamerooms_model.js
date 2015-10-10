@@ -11,14 +11,16 @@
  *    connections: [
  *                   _id
  *                   username
+ *                   profile_url
  *                  ,
  *                   _id
  *                   username
+ *                   profile_url
  *                 ]
  *    state               { READY, START }
  *    createdAt           Date
  *
  */
 
-GameRooms = new Mongo.Collection('gamerooms');
+Gamerooms = new Mongo.Collection('gamerooms');
 
