@@ -1,47 +1,52 @@
 <template name="home">
   <article class="page container-fluid shine-wrapper">
-      <div class="row-fluid">
-        <nav class="navtabs">
-          <ul class="navtabs-list">
-            <li class="navtabs-item {{isActive ''}}">
-              <a class="navtabs-anchor" href="{{pathFor 'home'}}">최신순</a>
-            </li>
-            <li class="navtabs-item {{isActive 'like'}}">
-              <a class="navtabs-anchor" href="{{pathFor 'home' query='sortBy=like'}}">인기순</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
     {{#unless Template.subscriptionsReady}}
       {{> listLoading}}
     {{else}}
+    <div class="row-fluid">
+      <nav class="navtabs">
+        <ul class="navtabs-list">
+          <li class="navtabs-item active">
+            <a class="navtabs-anchor" href="/">게임목록</a>
+          </li>
+          <li class="navtabs-item pull-right">
+            <a class="navtabs-add-game" data-toggle="modal"
+                    data-target="#gameModal"><i class="fa fa-plus-circle"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
       {{#if noPosts}}
-        <div class="row-fluid">
-          {{_ 'text_no_blogs'}}
-        </div>
+      <div class="row-fluid">
+        {{_ 'text_no_blogs'}}
+      </div>
       {{else}}
-        <div class="row-fluid">
-          <div class="block-group">
-            <ul class="block-list">
-              {{#each posts}}
-                {{#with postWithCategory}}
-                  {{> homeListItem}}
-                {{/with}}
-              {{/each}}
-            </ul>
-          </div>
+      <div class="row-fluid">
+        <div class="block-group">
+          <ul class="block-list">
+            {{#each posts}}
+            {{#with postWithCategory}}
+            {{> homeListItem}}
+            {{/with}}
+            {{/each}}
+          </ul>
         </div>
+      </div>
 
         {{#if hasMore}}
-          <div class="row-fluid">
-            <a class="btn btn-deep-app btn-block load-more">{{_ 'command_load_more'}}</a>
-          </div>
+        <div class="row-fluid">
+          <a class="btn btn-deep-app btn-block load-more">{{_ 'command_load_more'}}</a>
+        </div>
         {{/if}}
       {{/if}}
+
+
     {{/unless}}
   </article>
-</template>
 
+  {{> gameroomsWrite}}
+</template>
 
 <template name="homeListItem">
   <li class="post-item">
