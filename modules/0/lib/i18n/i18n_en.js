@@ -66,6 +66,8 @@ I18n_data_en = {
   "text_notifications_empty"      : "There's no notification.",
   "text_user_count"               : "User count: {0}",
 
+  "text_room_insert_success"      : "Room created",
+
 
   "error_access_denied"           : "Access denied",
   "error_invalid_type"            : "Input data type is invalid",

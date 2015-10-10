@@ -12,7 +12,10 @@
           </li>
           {{#if currentUser}}
           <li class="navtabs-item pull-right">
-            <a class="navtabs-add-game"><i class="fa fa-plus-circle"></i></a>
+            <a
+              href="{{pathFor 'roomCreate'}}"
+              class="navtabs-add-game"><i
+              class="fa fa-plus-circle"></i></a>
           </li>
           {{/if}}
         </ul>

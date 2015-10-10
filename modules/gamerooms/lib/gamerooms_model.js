@@ -24,3 +24,15 @@
 
 Gamerooms = new Mongo.Collection('gamerooms');
 
+Meteor.methods({
+  'insertRoom'(obj) {
+
+    let user = Meteor.user();
+    _.extend(obj, {
+      state: 'ready'
+    });
+
+    let roomId = Gamerooms.insert(obj);
+    return roomId;
+  }
+});

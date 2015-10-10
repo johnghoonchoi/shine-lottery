@@ -19,6 +19,8 @@ I18n_data_ko = {
   "title_profile"                 : "사용자 정보",
   "title_profile_edit_picture"    : "사진 수정",
 
+  "text_room_insert_success"      : "방 개설 성공",
+
 
   "command_sign_in"               : "로그인",
   "command_sign_out"              : "로그아웃",

@@ -5,8 +5,6 @@
 
 Template.home.onCreated(function () {
 
-
-
   this.autorun(()=> {
     let query = {};
     let options = {};
