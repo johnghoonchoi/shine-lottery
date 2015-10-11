@@ -2,6 +2,8 @@
 Template.animation3D.onCreated(function() {
   const instance = this;
 
+  instance.frame = { width: 900, height: 900 };
+
   instance.vy = 0;
   instance.vyMax = 300;
   instance.ay = -1;
@@ -9,51 +11,104 @@ Template.animation3D.onCreated(function() {
   instance.bounce = true;
 
   instance.values = [
-    { id: '1', max: 200, pos: { x: -450, y: 0, z: 0 }},
-    { id: '2', max: 250, pos: { x: -300, y: 0, z: 0 }},
-    { id: '3', max: 300, pos: { x: -150, y: 0, z: 0 }},
-    { id: '4', max: 450, pos: { x: 0, y: 0, z: 0 }},
-    { id: '5', max: 300, pos: { x: 150, y: 0, z: 0 }},
-    { id: '6', max: 400, pos: { x: 300, y: 0, z: 0 }},
-    { id: '7', max: 350, pos: { x: 450, y: 0, z: 0 }},
-    { id: '8', max: 425, pos: { x: 600, y: 0, z: 0 }},
+    { id: '이상원', max: 200 },
+    { id: '이용선', max: 475 },
+    { id: '성열우', max: 300 },
+    { id: '최종훈', max: 450 },
+    { id: 'Michael Jackson', max: 300 },
+    { id: 'Ablert Einstein', max: 400 },
+    { id: 'Mahatma Gandy', max: 350 },
+    { id: 'Riz Taylor', max: 425 },
   ];
 
+  let pos = -500;
+  instance.values.forEach((item) => {
+    item.pos = {
+      x: pos, y: 0, z: 100
+    };
+    pos += 150;
+  });
+
   instance.newCamera = function(window) {
-    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.y = 700;
-    camera.position.z = 500;
+    let camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+    camera.position.x = 0;
+    camera.position.y = 200; //600;
+    camera.position.z = 700;
 
     return camera;
   };
 
-  instance.newLight = function() {
-    let light = new THREE.SpotLight();
-    light.position.set(250, 2000, 2000);
-    light.target.position.set(0, 0, 0);
-    light.castShadow = true;
+  instance.newLight = function(scene, type) {
+    let light;
+    if (type === 'spotlight') {
+      light = new THREE.SpotLight();
+      light.position.set(0, 2000, 500);
+      light.target.position.set(0, 0, 0);
+      light.castShadow = true;
+    } else {
+      light = new THREE.AmbientLight(0xdddddd);
+    }
+
+    scene.add(light);
 
     return light;
   };
 
-  instance.newSphere = function(x, y, z) {
+  instance.newAvatar = function(item, scene) {
+    // sphere
+    /*
     let geometry = new THREE.SphereGeometry(50, 16, 12);
     let material = new THREE.MeshPhongMaterial({ color: 0xff0000, specular: 0xffffff, shininess: 50, opacity: 1, wireframe: false });
-    let sphere = new THREE.Mesh(geometry, material);
-    sphere.castShadow = true;
-    sphere.position.set(x, y, z);
+    */
 
-    return sphere;
+    // text
+    /*
+    let geometry = new THREE.TextGeometry(item.id, {
+      size: 70,
+      height: 20,
+      curveSegments: 4,
+      font: 'droid sans',
+      weight: 'bold',
+      style: 'normal',
+      bevelThickness: 2,
+      bevelSize: 1.5,
+      bevelEnabled: true,
+      material: 0,
+      extrudeMaterial: 1
+    });
+    let material = new THREE.MeshPhongMaterial({ color: 0x3399ff, specular: 0xffffff, shininess: 50, opacity: 1, wireframe: false });
+    */
+
+    // plane
+    let geometry = new THREE.PlaneGeometry(50, 50);
+    //let material = new THREE.MeshPhongMaterial({ color: 0x3399ff, specular: 0xffffff, shininess: 50, opacity: 1, wireframe: false });
+
+
+    let imageMap = THREE.ImageUtils.loadTexture('/images/test.gif');
+    imageMap.minFilter = THREE.NearestFilter;
+    let material = new THREE.MeshLambertMaterial({ map: imageMap, wireframe: false });
+    material.transparent = true;
+    material.blending = THREE['NoBlending'];
+
+    let avatar = new THREE.Mesh(geometry, material);
+    avatar.castShadow = true;
+    avatar.position.set(item.pos.x, item.pos.y, item.pos.z);
+
+    scene.add(avatar);
+
+    return avatar;
   };
 
-  instance.newPlane = function() {
-    let geometry = new THREE.PlaneGeometry(1500, 500);
-    let material = new THREE.MeshLambertMaterial({ color: 0xffcc55, wireframe: false });
+  instance.newPlane = function(scene) {
+    let geometry = new THREE.PlaneBufferGeometry(2000, 1000);
+    let material = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: false });
     let plane = new THREE.Mesh(geometry, material);
     plane.rotation.x = -Math.PI / 2;
-    plane.position.set(0, -500, 0);
+    plane.position.set(0, 0, 0); //-100, 100);
     plane.castShadow = false;
     plane.receiveShadow = true;
+
+    scene.add(plane);
 
     return plane;
   };
@@ -63,29 +118,27 @@ Template.animation3D.onCreated(function() {
 Template.animation3D.onRendered(function() {
 
   const instance = this;
+  const $frame = $('.ani-frame');
 
   let camera = instance.newCamera(window);
+
   let scene = new THREE.Scene();
+  let light = instance.newLight(scene, 'spotlight');
+  let plane = instance.newPlane(scene);
 
-  let light = instance.newLight();
-  scene.add(light);
 
-  let plane = instance.newPlane();
-  scene.add(plane);
-
+  // avatar items
   instance.values.forEach((item) => {
-    item.sphere = instance.newSphere(item.pos.x, item.pos.y, item.pos.z);
-    scene.add(item.sphere);
+    item.avatar = instance.newAvatar(item, scene);
   });
 
   camera.lookAt(plane.position);
 
-  // renderer = new THREE.CanvasRenderer();
   let renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMapEnabled = true;
 
-  $('.ani-frame').append(renderer.domElement);
+  $frame.append(renderer.domElement);
 
   function animate() {
     requestAnimationFrame(animate);
@@ -94,12 +147,12 @@ Template.animation3D.onRendered(function() {
 
   function render() {
     instance.values.forEach((item) => {
-      item.sphere.position.y += instance.toonVel;
+      item.avatar.position.y += instance.toonVel;
 
-      if (item.sphere.position.y >= item.max) {
+      if (item.avatar.position.y >= item.max) {
         instance.vy = 0;
 
-        item.sphere.position.y = item.max;
+        item.avatar.position.y = item.max;
       }
     });
 
