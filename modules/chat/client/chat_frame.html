@@ -1,10 +1,5 @@
 <template name="chatFrame">
   <div class="chat-frame">
-    <header>
-      <p>대화상대 : {{user.username}}</p>
-      <a class="close">&times;</a>
-    </header>
-
     <main class="body">
       <div class="chat-message-lists">
         {{#if Template.subscriptionsReady}}
@@ -20,10 +15,6 @@
         {{/if}}
       </div>
     </main>
-
-    <footer>
-      <textarea placeholder="내용을 입력하세요."></textarea>
-    </footer>
   </div>
 </template>
 
@@ -32,14 +23,17 @@
     {{#if isDate type}}
       <p class="date"><span>{{momentKoreanDate createdAt 5}}</span></p>
     {{else}}
-      {{#unless isUserMessage from}}
-        <a href="#" class="avatar-sm">
-          {{{getPartnerPictures}}}
-        </a>
+      {{#unless isUserMessage user}}
+        <span href="#" class="avatar-sm from right">
+          {{{getPicture user}}}
+        </span>
         <p class="from chat-balloon right">
           {{content}}
         </p>
-      {{else}}
+    {{else}}
+        <span href="#" class="avatar-sm me left">
+          {{{getPicture user}}}
+        </span>
         <p class="me chat-balloon left">
           {{content}}
         </p>

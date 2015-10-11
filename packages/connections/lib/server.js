@@ -2,14 +2,22 @@
  *
  */
 function _connectionProc(connection) {
+
   var client = {
     _id: connection.id,
     clientId: null,
     ip: connection.clientAddress,
     userAgent: connection.httpHeaders['user-agent'],
-    path: '',
+    rooms: {
+      roomId: '',
+      roomConnectedAt: '',
+    },
     createdAt: new Date()
   };
+
+  let loginCount = Connection.collection.find({ip: connection.clientAddress}).count();
+
+  //if (loginCount != 0) return;
 
   client._id = Connection.collection.insert(client);
   console.log('connection inserted: id = ' + client._id );
@@ -63,8 +71,8 @@ Meteor.methods({
 
   connectionUpdateUser: function() {
     let modifier = (this.userId) ?
-      { $set: { user: _userModifier(Meteor.user()) }} :
-      { $unset: { user: 1 }};
+    { $set: { user: _userModifier(Meteor.user()) }} :
+    { $unset: { user: 1, rooms: 1 }, };
 
     Connection.collection.update(this.connection.id, modifier);
   },
@@ -73,5 +81,24 @@ Meteor.methods({
     check(path, String);
 
     Connection.collection.update(this.connection.id, { $set: { path: path }});
+  },
+
+  connectionJoinRoom: function (rooms) {
+    rooms = {
+      roomId: rooms._id,
+      roomConnectedAt: new Date(),
+    };
+
+    Connection.collection.update(this.connection.id, { $set: { rooms: rooms }});
+  },
+
+  connectionLeaveRoom: function (roomId) {
+    Connection.collection.update(this.connection.id, { $unset: { rooms: 1 }});
+
+    console.log('roomId', roomId);
+
+    if (Connection.collection.find({ $and: [{"rooms.roomId": {$nin: ['']}}, {"rooms.roomId": { $exists: true }}]}).count() === 0) {
+      Meteor.call('removeRoom', roomId);
+    }
   }
 });

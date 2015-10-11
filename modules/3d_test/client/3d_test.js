@@ -1,6 +1,22 @@
 
 Template.animation3D.onCreated(function() {
   const instance = this;
+  
+  const data = Template.currentData();
+
+  //data.roomId
+
+  instance.autorun(function() {
+    instance.subscribe('connectedList', {'rooms.roomId': data.roomId});
+  });
+
+  instance.connectionListCount = function() {
+    return Counts.get('connectionListCount');
+  };
+
+  instance.connection = function() {
+    return Connection.collection.find({'rooms.roomId': data.roomId}, {});
+  };
 
   instance.frame = { width: 900, height: 900 };
 
@@ -119,6 +135,45 @@ Template.animation3D.onRendered(function() {
 
   const instance = this;
   const $frame = $('.ani-frame');
+
+  console.log('instance.connectionListCount(): ', instance.connectionListCount());
+  console.log('instance.connection: ', instance.connection().fetch());
+
+  let connectedList = instance.connection().fetch();
+  console.log('connectedList: ', connectedList);
+
+  let currentGamers = connectedList.map(function(obj) {
+    let rObj = {};
+    rObj.id = obj.user._id;
+    rObj.username = obj.user.username;
+
+    return rObj;
+  });
+
+  currentGamers.forEach(function(gamer) {
+    let selectNum = _.random(0, 500);
+    let randomNum = _.random(-450, 450);
+    gamer.max = selectNum;
+    gamer.pos = {
+      x: randomNum,
+      y: 0,
+      z: 0
+    };
+  });
+  console.log('currentGamers: ', currentGamers);
+
+  let winner = _.max(currentGamers, function(gamer){
+    return gamer.max;
+  });
+  console.log('winner: ', winner);
+  
+
+  instance.values = [];
+  currentGamers.forEach(function(gamer) {
+    instance.values.push(gamer);
+  });
+  
+  console.log('values: ', instance.values);
 
   let camera = instance.newCamera(window);
 

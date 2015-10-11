@@ -4,42 +4,42 @@
     {{#unless Template.subscriptionsReady}}
       {{> listLoading}}
     {{else}}
-    <div class="row-fluid">
-      <nav class="navtabs">
-        <ul class="navtabs-list">
-          <li class="navtabs-item active">
-            <a class="navtabs-anchor" href="#">게임목록</a>
-          </li>
-          {{#if currentUser}}
-          <li class="navtabs-item pull-right">
-            <a
-              href="{{pathFor 'roomCreate'}}"
-              class="navtabs-add-game"><i
-              class="fa fa-plus-circle"></i></a>
-          </li>
-          {{/if}}
-        </ul>
-      </nav>
-    </div>
-      {{#if noPosts}}
       <div class="row-fluid">
-        {{_ 'text_no_blogs'}}
-      </div>
-      {{else}}
-      <div class="row-fluid">
-        <div class="block-group">
-          <ul class="block-list">
-            {{#each gamerooms}}
-            {{> homeListItem}}
-            {{/each}}
+        <nav class="navtabs">
+          <ul class="navtabs-list">
+            <li class="navtabs-item active">
+              <a class="navtabs-anchor" href="#">게임목록</a>
+            </li>
+            {{#if currentUser}}
+              <li class="navtabs-item pull-right">
+                <a
+                  href="{{pathFor 'roomCreate'}}"
+                  class="navtabs-add-game"><i
+                  class="fa fa-plus-circle"></i></a>
+              </li>
+            {{/if}}
           </ul>
-        </div>
+        </nav>
       </div>
+      {{#if noPosts}}
+        <div class="row-fluid">
+          {{_ 'text_no_blogs'}}
+        </div>
+      {{else}}
+        <div class="row-fluid">
+          <div class="block-group">
+            <ul>
+              {{#each gamerooms}}
+                {{> homeListItem}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
 
         {{#if hasMore}}
-        <div class="row-fluid">
-          <a class="btn btn-deep-app btn-block load-more">{{_ 'command_load_more'}}</a>
-        </div>
+          <div class="row-fluid">
+            <a class="btn btn-deep-app btn-block load-more">{{_ 'command_load_more'}}</a>
+          </div>
         {{/if}}
       {{/if}}
 
@@ -52,18 +52,19 @@
   <li class="post-item">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-1 title">
-          <small>{{state}}</small>
+        <div class="col-xs-3 col-md-2 title">
+          <span class="label label-success">{{state}}</span>
         </div>
-        <div class="col-md-6 title">
+        <div class="col-xs-6 col-md-7 title">
           {{title}}
         </div>
-        <div class="col-md-3 title">
-          {{connections.length}}
+        <div class="col-xs-1 col-md-1 title">
+          {{connectionCounts roomId}}
         </div>
-        <div class="col-md-2 title">
+        <div class="col-xs-2 col-md-2 title">
           {{#if isReady state}}
-            <a href="{{pathFor 'gameroomsView' _id}}" class="btn btn-success">참여</a>
+            <a href="{{pathFor 'gameroomsView' _id=this._id}}"
+               class="btn btn-success">참여</a>
           {{else}}
             <button type="button" class="btn btn-warning">관전</button>
           {{/if}}
@@ -73,17 +74,17 @@
     </div>
 
     <!--<p>-->
-      <!--{{{postContent}}}-->
+    <!--{{{postContent}}}-->
     <!--</p>-->
     <!--<div class="info">-->
-      <!--<span class="author">-->
-        <!--<i>by </i><a href="{{pathFor 'accountView' username=author.username}}">{{author.username}}</a>-->
-      <!--</span>-->
-      <!--<span class="counts">-->
-        <!--<span class="count"><i class="fa fa-heart-o"></i> {{likesCount}}</span>-->
-        <!--<span class="count"><i class="fa fa-comment-o"></i> {{commentCount}}</span>-->
-      <!--</span>-->
-      <!--<span class="date">{{momentFromNow createdAt}}</span>-->
+    <!--<span class="author">-->
+    <!--<i>by </i><a href="{{pathFor 'accountView' username=author.username}}">{{author.username}}</a>-->
+    <!--</span>-->
+    <!--<span class="counts">-->
+    <!--<span class="count"><i class="fa fa-heart-o"></i> {{likesCount}}</span>-->
+    <!--<span class="count"><i class="fa fa-comment-o"></i> {{commentCount}}</span>-->
+    <!--</span>-->
+    <!--<span class="date">{{momentFromNow createdAt}}</span>-->
     <!--</div>-->
   </li>
 </template>

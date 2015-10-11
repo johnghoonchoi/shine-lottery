@@ -8,33 +8,27 @@ Meteor.methods({
   chatMessageInsert (data) {
 
     // check validation
-    check(data, Match.ObjectIncluding({
-      "toId": String,
-      "content": Match.Optional(String),
-      "type": String
-    }));
+    //check(data, Match.ObjectIncluding({
+    //  "toId": String,
+    //  "content": Match.Optional(String),
+    //  "type": String
+    //}));
 
     // check permission
-    if (! Meteor.userId) {
-      throw new Meteor.Error(ERROR_CODE_SECURITY, "error_access_denied");
-    }
+    //if (! Meteor.userId) {
+    //  throw new Meteor.Error(ERROR_CODE_SECURITY, "error_access_denied");
+    //}
 
-    if (! data.toId === Meteor.userId()) {
-      throw new Meteor.Error(ERROR_CODE_SECURITY, "error_String");
-    }
+    //if (! data.toId === Meteor.userId()) {
+    //  throw new Meteor.Error(ERROR_CODE_SECURITY, "error_String");
+    //}
 
     // build insert object
-    let toUser = Meteor.users.findOne({ _id: data.toId });
+    //let toUser = Meteor.users.findOne({ _id: data.toId });
 
     let chatMessage = {
-      from: {
-        _id: Meteor.userId(),
-        username: Meteor.user().username
-      },
-      to: {
-        _id: data.toId,
-        username: userDisplayName(toUser)
-      },
+      roomId: data.roomId,
+      user: data.user,
       content: data.content,
       createdAt: new Date(),
       type: data.type

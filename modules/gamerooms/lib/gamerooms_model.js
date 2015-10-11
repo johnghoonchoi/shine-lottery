@@ -34,5 +34,9 @@ Meteor.methods({
 
     let roomId = Gamerooms.insert(obj);
     return roomId;
+  },
+
+  'removeRoom'(_id) {
+    return Gamerooms.remove(_id);
   }
 });
