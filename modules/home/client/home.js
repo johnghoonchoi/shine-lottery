@@ -5,12 +5,9 @@
 
 Template.home.onCreated(function () {
 
-  this.autorun(()=> {
     let query = {};
     let options = {};
     this.subscribe('gameroomsList', query, options);
-  });
-
 
 });
 
@@ -22,7 +19,7 @@ Template.home.helpers({
   'gamerooms'() {
     return Gamerooms.find();
   },
-})
+});
 
 Template.home.events({
   'click .navtabs-add-game'(e) {
@@ -38,3 +35,11 @@ Template.homeListItem.helpers({
   },
 })
 
+Template.homeListItem.events({
+  'click .btn-success'(e, instance) {
+    //e.stopPropagation();
+    //e.preventDefault();
+
+    Meteor.call('connectionJoinRoom', instance.data);
+  }
+})

@@ -1,5 +1,56 @@
 <template name="gameroomsView">
-  <div>
-    Room View
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-8 col-md-9">
+        <div class="chat-frame">
+          <main class="body">
+            <div class="chat-message-lists">
+              {{#if Template.subscriptionsReady}}
+              {{#each chatMessagesList}}
+              {{> chatMessageListItem}}
+              {{/each}}
+
+              {{#if onTyping}}
+              {{> chatStatusInput}}
+              {{/if}}
+              {{else}}
+              Loading...
+              {{/if}}
+            </div>
+          </main>
+        </div>
+      </div>
+      <div class="col-xs-4 col-md-3">
+        {{#if isHost}}
+          <button class="btn btn-primary">게임시작</button>
+        {{/if}}
+        <div id="connections-sign-in">
+          <header>
+            <p>{{_ 'text_user_count' 0=connectionCount}}명</p>
+          </header>
+
+          <div>
+            {{#each connections}}
+            {{> connectionsListItem}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <footer>
+          <textarea placeholder="내용을 입력하세요."></textarea>
+        </footer>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="connectionsListItem">
+  <div class="connection-item">
+    <span class="avatar-sm">
+      {{{getPicture toUser}}}
+      <span class="user-name">{{userDisplayName user}}</span>
+    </span>
   </div>
 </template>
