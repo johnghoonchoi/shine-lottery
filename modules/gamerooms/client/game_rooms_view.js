@@ -4,6 +4,9 @@
 
 Template.gameroomsView.onCreated(function () {
 
+  console.log('this: ', this);
+
+
   let query = {};
   let options = {};
 
