@@ -45,3 +45,7 @@ Router.route('/room/create', {
 Router.route('/room/view', {
   name: 'roomView',
 });
+
+Router.route('/animate/3d', {
+  name: 'animation3D',
+});

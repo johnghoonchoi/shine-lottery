@@ -98,34 +98,34 @@ Meteor.startup(function() {
   //  }
   //}
 
-  //if (Meteor.users.find().count() === 0) {
-  //  const users = [
-  //    {
-  //      username: 'admin',
-  //      email: 'leesn@bookp.al',
-  //      password: '74123',
-  //      roles: [ 'ROLE_ADMIN' ]
-  //    },
-  //
-  //    {
-  //      username: 'test',
-  //      email: 'test@bookp.al',
-  //      password: '74123'
-  //    }
-  //  ];
+  if (Meteor.users.find().count() === 0) {
+    const users = [
+      {
+        username: 'admin',
+        email: 'leesn@bookp.al',
+        password: '74123',
+        roles: [ 'ROLE_ADMIN' ]
+      },
 
-    //users.forEach(function(user) {
-    //  user._id = Accounts.createUser({
-    //    username: user.username,
-    //    email: user.email,
-    //    password: user.password
-    //  });
-    //
-    //  if (user.roles && user.roles.length > 0) {
-    //    Roles.addUsersToRoles(user._id, user.roles);
-    //  }
-    //});
-  //}
+      {
+        username: 'test',
+        email: 'test@bookp.al',
+        password: '74123'
+      }
+    ];
+
+    users.forEach(function(user) {
+      user._id = Accounts.createUser({
+        username: user.username,
+        email: user.email,
+        password: user.password
+      });
+
+      if (user.roles && user.roles.length > 0) {
+        Roles.addUsersToRoles(user._id, user.roles);
+      }
+    });
+  }
 
   //if (Categories.find().count() === 0) {
   //  const now = new Date();
