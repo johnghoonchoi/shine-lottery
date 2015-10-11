@@ -18,11 +18,7 @@ Template.gameroomsView.onCreated(function () {
 });
 
 Template.gameroomsView.onDestroyed(function () {
-  Meteor.call('connectionLeaveRoom', () => {
-    if (Connection.collection.find().count() === 0) {
-      Meteor.call('removeRoom', this.data);
-    }
-  });
+  Meteor.call('connectionLeaveRoom', this.data);
 });
 
 Template.gameroomsView.helpers({
