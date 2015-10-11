@@ -39,7 +39,6 @@ Template.homeListItem.events({
   'click .btn-success'(e, instance) {
     //e.stopPropagation();
     //e.preventDefault();
-
     Meteor.call('connectionJoinRoom', instance.data);
   }
 })

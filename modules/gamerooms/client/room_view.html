@@ -2,23 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-8 col-md-9">
-        <div class="chat-frame">
-          <main class="body">
-            <div class="chat-message-lists">
-              {{#if Template.subscriptionsReady}}
-              {{#each chatMessagesList}}
-              {{> chatMessageListItem}}
-              {{/each}}
-
-              {{#if onTyping}}
-              {{> chatStatusInput}}
-              {{/if}}
-              {{else}}
-              Loading...
-              {{/if}}
-            </div>
-          </main>
-        </div>
+        {{> Template.dynamic template="chatFrame"}}
       </div>
       <div class="col-xs-4 col-md-3">
         {{#if isHost}}
@@ -38,7 +22,7 @@
       </div>
       <div class="col-xs-12 col-md-12">
         <footer>
-          <textarea placeholder="내용을 입력하세요."></textarea>
+          <textarea class="chat-textarea" placeholder="내용을 입력하세요."></textarea>
         </footer>
       </div>
     </div>

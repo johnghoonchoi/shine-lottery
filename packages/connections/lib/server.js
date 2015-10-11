@@ -17,7 +17,7 @@ function _connectionProc(connection) {
 
   let loginCount = Connection.collection.find({ip: connection.clientAddress}).count();
 
-  if (loginCount != 0) return;
+  //if (loginCount != 0) return;
 
   client._id = Connection.collection.insert(client);
   console.log('connection inserted: id = ' + client._id );

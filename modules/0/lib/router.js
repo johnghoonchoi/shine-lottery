@@ -36,6 +36,9 @@ Router.route('/', {
 
 Router.route('game/:_id', {
   name: 'gameroomsView',
+  data: function () {
+    return this.params._id;
+  }
 });
 
 Router.route('/room/create', {
