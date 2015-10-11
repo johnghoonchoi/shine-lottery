@@ -8,6 +8,10 @@ Meteor.publish('gameroomsList', function(query, options) {
 });
 
 Meteor.publish('connectedList', function (query, options) {
+
+  Counts.publish(this, 'connectionListCount',
+    Connection.collection.find(query), { noReady: true });
+
   options = {
     fields: {
       rooms: 1,

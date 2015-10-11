@@ -4,7 +4,6 @@
 
 Template.gameroomsView.onCreated(function () {
 
-
   let options = {};
 
   let roomId = this.data;

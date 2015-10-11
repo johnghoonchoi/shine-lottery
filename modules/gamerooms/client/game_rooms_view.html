@@ -6,7 +6,8 @@
       </div>
       <div class="col-xs-4 col-md-3">
         {{#if isHost}}
-          <button class="btn btn-primary">게임시작</button>
+          <a href="{{pathFor 'animation3D' roomId=this.roomId}}" class="btn
+          btn-success">게임시작</a>
         {{/if}}
         <div id="connections-sign-in">
           <header>
