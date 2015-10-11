@@ -28,11 +28,24 @@ Template.home.events({
 
 });
 
+Template.homeListItem.onCreated(function () {
+
+  console.log('this.data', this.data);
+
+  let query = { 'rooms.roomId': this.data._id };
+
+  this.subscribe('connectedListCount', query);
+
+});
 
 Template.homeListItem.helpers({
   'isReady'(state) {
     return state === "ready"? true : false;
   },
+
+  'connectionCounts'(roomId) {
+    return Counts.get('connectedListCount', roomId);
+  }
 })
 
 Template.homeListItem.events({
