@@ -5,9 +5,9 @@
 
 Template.home.onCreated(function () {
 
-    let query = {};
-    let options = {};
-    this.subscribe('gameroomsList', query, options);
+  let query = {};
+  let options = {};
+  this.subscribe('gameroomsList', query, options);
 
 });
 

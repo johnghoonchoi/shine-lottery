@@ -37,12 +37,10 @@ Router.route('/', {
 Router.route('game/:_id', {
   name: 'gameroomsView',
   data: function () {
-    return {roomId: this.params._id}
+    return {
+      roomId: this.params._id
+    }
   }
-});
-
-Router.route('games/start', {
-  name: 'gameStart',
 });
 
 Router.route('/room/create', {
@@ -56,6 +54,10 @@ Router.route('/room/view', {
 Router.route('/animate/3d/:roomId', {
   name: 'animation3D',
   data: function () {
-    return {roomId: this.params.roomId}
+    console.log('this.params.roomId: ', this.params.roomId);
+    
+    return {
+      roomId: this.params.roomId
+    }
   }
 });

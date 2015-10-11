@@ -6,7 +6,7 @@ Template.gameroomsView.onCreated(function () {
 
   let options = {};
 
-  let roomId = this.data;
+  let roomId = this.data.roomId;
 
   let query = { 'rooms.roomId': roomId };
 
@@ -17,8 +17,13 @@ Template.gameroomsView.onCreated(function () {
 });
 
 Template.gameroomsView.onDestroyed(function () {
-  Meteor.call('connectionLeaveRoom', this.data);
+  Meteor.call('connectionLeaveRoom', this.data.roomId);
 });
+
+Template.gameroomsView.onRendered(function () {
+  console.log('this.data: ', this.data);
+});
+
 
 Template.gameroomsView.helpers({
   'connections'() {
@@ -26,6 +31,8 @@ Template.gameroomsView.helpers({
       return Connection.collection.find();
     }
   },
+
+
   'connectionCount'() {
     if (Template.instance().connectionListHandle.ready()) {
       return Connection.collection.find().count();

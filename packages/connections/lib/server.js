@@ -10,7 +10,7 @@ function _connectionProc(connection) {
     userAgent: connection.httpHeaders['user-agent'],
     rooms: {
       roomId: '',
-      roomConnectedAt: '', 
+      roomConnectedAt: '',
     },
     createdAt: new Date()
   };
@@ -71,8 +71,8 @@ Meteor.methods({
 
   connectionUpdateUser: function() {
     let modifier = (this.userId) ?
-      { $set: { user: _userModifier(Meteor.user()) }} :
-      { $unset: { user: 1, rooms: 1 }, };
+    { $set: { user: _userModifier(Meteor.user()) }} :
+    { $unset: { user: 1, rooms: 1 }, };
 
     Connection.collection.update(this.connection.id, modifier);
   },
