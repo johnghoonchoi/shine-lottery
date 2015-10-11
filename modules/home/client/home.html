@@ -28,7 +28,7 @@
       {{else}}
       <div class="row-fluid">
         <div class="block-group">
-          <ul class="block-list">
+          <ul>
             {{#each gamerooms}}
             {{> homeListItem}}
             {{/each}}
@@ -52,18 +52,19 @@
   <li class="post-item">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-1 title">
-          <small>{{state}}</small>
+        <div class="col-xs-3 col-md-2 title">
+          <span class="label label-success">{{state}}</span>
         </div>
-        <div class="col-md-6 title">
+        <div class="col-xs-6 col-md-7 title">
           {{title}}
         </div>
-        <div class="col-md-3 title">
+        <div class="col-xs-1 col-md-1 title">
           {{connections.length}}
         </div>
-        <div class="col-md-2 title">
+        <div class="col-xs-2 col-md-2 title">
           {{#if isReady state}}
-            <a href="{{pathFor 'gameroomsView' _id}}" class="btn btn-success">참여</a>
+            <a href="{{pathFor 'gameroomsView' _id=this._id}}"
+               class="btn btn-success">참여</a>
           {{else}}
             <button type="button" class="btn btn-warning">관전</button>
           {{/if}}

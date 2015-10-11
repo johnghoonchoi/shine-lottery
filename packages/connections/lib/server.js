@@ -17,7 +17,7 @@ function _connectionProc(connection) {
 
   let loginCount = Connection.collection.find({ip: connection.clientAddress}).count();
 
-  if (loginCount != 0) return;
+  //if (loginCount != 0) return;
 
   client._id = Connection.collection.insert(client);
   console.log('connection inserted: id = ' + client._id );
@@ -92,7 +92,13 @@ Meteor.methods({
     Connection.collection.update(this.connection.id, { $set: { rooms: rooms }});
   },
 
-  connectionLeaveRoom: function () {
+  connectionLeaveRoom: function (roomId) {
     Connection.collection.update(this.connection.id, { $unset: { rooms: 1 }});
+
+    console.log('roomId', roomId);
+
+    if (Connection.collection.find({ $and: [{"rooms.roomId": {$nin: ['']}}, {"rooms.roomId": { $exists: true }}]}).count() === 0) {
+      Meteor.call('removeRoom', roomId);
+    }
   }
 });

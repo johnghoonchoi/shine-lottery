@@ -15,7 +15,11 @@ Template.roomCreate.events({
         Alerts.notify('error', error.message);
       } else {
         Alerts.notify('success', 'text_room_insert_success');
-        Router.go('gameroomsView', { _id: result });
+        Meteor.call('connectionJoinRoom', { _id: result }, function (err) {
+          if (err) throw new Error(err);
+          Router.go('gameroomsView', { _id: result });
+        });
+
       }
     });
 

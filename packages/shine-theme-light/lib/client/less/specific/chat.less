@@ -28,6 +28,11 @@
 @chat-message-margin : 0 4px;
 @a : 70px;
 
+.chat-textarea {
+  width: 100%;
+  min-height: 10px;
+  resize: none;
+}
 
 .chat-balloon
 {
@@ -156,24 +161,35 @@
         }
       }
 
-      .from {
+      p.from {
         float: left;
         margin-left: 5px;
         margin-right: 50px;
         max-width: 200px;
         word-break: break-all;
+        top: 3px;
       }
 
-      .me {
+      span.from {
+        float: left;
+        margin-right: 5px;
+      }
+
+      p.me {
         float: right;
         margin-left: 50px;
         max-width: 240px;
         word-break: break-all;
         background: lighten(@brand-info, 30%);
-
+        top: 3px;
         &:after {
           border-color: transparent transparent transparent lighten(@brand-info, 30%);
         }
+      }
+
+      span.me {
+        float: right;
+        margin-left: 7px;
       }
     }
   }
